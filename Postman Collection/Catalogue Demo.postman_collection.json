@@ -1,0 +1,111 @@
+{
+	"info": {
+		"_postman_id": "bf33a788-a674-4cf8-9230-4f9a730ad810",
+		"name": "Catalogue Demo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Find by eSIM",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/catalogue-demo/mobile/search?sim=eSim",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"catalogue-demo",
+						"mobile",
+						"search"
+					],
+					"query": [
+						{
+							"key": "sim",
+							"value": "eSim"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find all",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/catalogue-demo/mobile/all",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"catalogue-demo",
+						"mobile",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:9090/catalogue-demo/mobile/search?priceEur=200",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/catalogue-demo/mobile/search?priceEur=200",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"catalogue-demo",
+						"mobile",
+						"search"
+					],
+					"query": [
+						{
+							"key": "priceEur",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Find by announcement date and price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/catalogue-demo/mobile/search?announceDate=1999&priceEur=200",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"catalogue-demo",
+						"mobile",
+						"search"
+					],
+					"query": [
+						{
+							"key": "announceDate",
+							"value": "1999"
+						},
+						{
+							"key": "priceEur",
+							"value": "200"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
