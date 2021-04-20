@@ -23,7 +23,6 @@ public class CatalogueController {
 	private final CatalogueService catalogueService;
 
 	public CatalogueController(CatalogueService catalogueService) {
-		super();
 		this.catalogueService = catalogueService;
 	}
 

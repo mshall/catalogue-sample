@@ -2,7 +2,6 @@ package com.shall.catalogue.demo.util;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 
 import com.shall.catalogue.demo.dto.CatalogueItem;
@@ -15,13 +14,13 @@ public class DatabaseUtil {
 
 	Logger logger = LoggerFactory.getLogger(DatabaseUtil.class);
 
-	@Autowired
-	public CatalogueRepository catalogueRepository;
+	private final CatalogueRepository catalogueRepository;
 
 	private final NetworkUtil networkUtil;
 
-	public DatabaseUtil(NetworkUtil networkUtil) {
+	public DatabaseUtil(NetworkUtil networkUtil, CatalogueRepository catalogueRepository) {
 		this.networkUtil = networkUtil;
+		this.catalogueRepository = catalogueRepository;
 	}
 
 	public void initializeDatabase() {
