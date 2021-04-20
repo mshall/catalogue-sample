@@ -48,18 +48,6 @@ public class CatalogueService {
 		item.setSim(sim);
 
 		items = catalogueRepositoryImpl.findCatalogueItems(item);
-
-//		if (announceDate != null && !announceDate.isEmpty()) {
-//			items = findByAnnounceDateAndPrice(announceDate, priceEuro);
-//			return items;
-//		}
-//		if (sim == null || sim.isEmpty()) {
-//			items = searchByPrice(priceEuro);
-//			return items;
-//		} else if (sim != null && !sim.isEmpty()) {
-//			items = searchBySim(sim);
-//			return items;
-//		}
 		logger.debug("CatalogueService.search -> End");
 		return items;
 	}

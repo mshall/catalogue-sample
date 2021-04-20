@@ -7,6 +7,5 @@ import lombok.Data;
 @Data
 public class ExtendedErrorResponse extends ErrorResponse {
 
-
 	private Map<String, String> additionalInfo;
 }

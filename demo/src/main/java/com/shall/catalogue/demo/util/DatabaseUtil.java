@@ -1,5 +1,7 @@
 package com.shall.catalogue.demo.util;
 
+import java.util.Arrays;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
@@ -7,18 +9,18 @@ import org.springframework.context.annotation.Configuration;
 import com.shall.catalogue.demo.dto.CatalogueItem;
 import com.shall.catalogue.demo.dto.Hardware;
 import com.shall.catalogue.demo.dto.Release;
-import com.shall.catalogue.demo.repository.CatalogueRepositoryImpl;
+import com.shall.catalogue.demo.repository.ICatalogueRepository;
 
 @Configuration
 public class DatabaseUtil {
 
 	Logger logger = LoggerFactory.getLogger(DatabaseUtil.class);
 
-	private final CatalogueRepositoryImpl catalogueRepository;
+	private final ICatalogueRepository catalogueRepository;
 
 	private final DataRetrievalUtil dataRetrievalUtil;
 
-	public DatabaseUtil(DataRetrievalUtil networkUtil, CatalogueRepositoryImpl catalogueRepository) {
+	public DatabaseUtil(DataRetrievalUtil networkUtil, ICatalogueRepository catalogueRepository) {
 		this.dataRetrievalUtil = networkUtil;
 		this.catalogueRepository = catalogueRepository;
 	}
@@ -26,11 +28,7 @@ public class DatabaseUtil {
 	public void initializeDatabase() {
 		logger.debug("DatabaseUtil.initializeDatabase -> Start");
 		CatalogueItem[] networkitems = dataRetrievalUtil.initializeCatalogueFetching();
-		// Make Stream here instead of for loop
-		for (int i = 0; i < networkitems.length; i++) {
-			CatalogueItem networkItem = networkitems[i];
-			catalogueRepository.save(mapItems(networkItem));
-		}
+		Arrays.stream(networkitems).forEach(item -> catalogueRepository.save(mapItems(item)));
 		logger.debug("DatabaseUtil.initializeDatabase -> End");
 	}
 
