@@ -2,6 +2,8 @@ package com.shall.catalogue.demo.service;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.shall.catalogue.demo.model.CatalogueItem;
@@ -10,6 +12,8 @@ import com.shall.catalogue.demo.repository.CatalogueRepository;
 @Service
 public class CatalogueService {
 
+	Logger logger = LoggerFactory.getLogger(CatalogueService.class);
+
 	private final CatalogueRepository catalogueRepository;
 
 	public CatalogueService(CatalogueRepository catalogueRepository) {
@@ -17,6 +21,8 @@ public class CatalogueService {
 	}
 
 	public List<CatalogueItem> search(int priceEuro, String sim, String announceDate) {
+		logger.debug("***********************************");
+		logger.debug("CatalogueService.search -> Start");
 		List<CatalogueItem> items = null;
 		if (announceDate != null && !announceDate.isEmpty()) {
 			items = findByAnnounceDateAndPrice(announceDate, priceEuro);
@@ -29,47 +35,49 @@ public class CatalogueService {
 			items = searchBySim(sim);
 			return items;
 		}
+		logger.debug("CatalogueService.search -> End");
+		logger.debug("***********************************");
 		return items;
 	}
 
 	public List<CatalogueItem> searchByPrice(int priceEuro) {
-		System.out.println("***********************************");
-		System.out.println("CatalogueService.searchByPrice -> Start");
+		logger.debug("***********************************");
+		logger.debug("CatalogueService.searchByPrice -> Start");
 		List<CatalogueItem> items = catalogueRepository.findByPrice(priceEuro);
-		System.out.println("Returned items: " + items);
+		logger.info("Returned items: " + items);
 
-		System.out.println("CatalogueService.searchByPrice -> End");
-		System.out.println("***********************************");
+		logger.debug("CatalogueService.searchByPrice -> End");
+		logger.debug("***********************************");
 		return items;
 	}
 
 	public List<CatalogueItem> searchBySim(String sim) {
-		System.out.println("***********************************");
-		System.out.println("CatalogueService.searchBySim -> Start");
+		logger.debug("***********************************");
+		logger.debug("CatalogueService.searchBySim -> Start");
 		List<CatalogueItem> items = catalogueRepository.findBySimContainingIgnoreCase(sim);
-		System.out.println("Returned items: " + items);
-		System.out.println("CatalogueService.searchBySim -> End");
-		System.out.println("***********************************");
+		logger.info("Returned items: " + items);
+		logger.debug("CatalogueService.searchBySim -> End");
+		logger.debug("***********************************");
 		return items;
 	}
 
 	public List<CatalogueItem> findAllItems() {
-		System.out.println("***********************************");
-		System.out.println("CatalogueService.findAll -> Start");
+		logger.debug("***********************************");
+		logger.debug("CatalogueService.findAll -> Start");
 		List<CatalogueItem> items = catalogueRepository.findAll();
-		System.out.println("Returned items: " + items);
-		System.out.println("CatalogueService.findAll -> End");
-		System.out.println("***********************************");
+		logger.info("Returned items: " + items);
+		logger.debug("CatalogueService.findAll -> End");
+		logger.debug("***********************************");
 		return items;
 	}
 
 	public List<CatalogueItem> findByAnnounceDateAndPrice(String announceDate, int price) {
-		System.out.println("***********************************");
-		System.out.println("CatalogueService.findByAnnounceDateAndPrice -> Start");
+		logger.debug("***********************************");
+		logger.debug("CatalogueService.findByAnnounceDateAndPrice -> Start");
 		List<CatalogueItem> items = catalogueRepository.findByAnnounceDateAndPrice(announceDate, price);
-		System.out.println("Returned items: " + items);
-		System.out.println("CatalogueService.findByAnnounceDateAndPrice -> End");
-		System.out.println("***********************************");
+		logger.info("Returned items: " + items);
+		logger.debug("CatalogueService.findByAnnounceDateAndPrice -> End");
+		logger.debug("***********************************");
 		return items;
 	}
 }
