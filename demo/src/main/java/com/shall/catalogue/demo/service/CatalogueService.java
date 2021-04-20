@@ -46,7 +46,7 @@ public class CatalogueService {
 	public List<CatalogueItem> searchBySim(String sim) {
 		System.out.println("***********************************");
 		System.out.println("CatalogueService.searchBySim -> Start");
-		List<CatalogueItem> items = catalogueRepository.findByQuery(sim);
+		List<CatalogueItem> items = catalogueRepository.findBySimContainingIgnoreCase(sim);
 		System.out.println("Returned items: " + items);
 		System.out.println("CatalogueService.searchBySim -> End");
 		System.out.println("***********************************");

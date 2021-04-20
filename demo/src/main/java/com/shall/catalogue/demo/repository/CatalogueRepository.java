@@ -9,8 +9,8 @@ import com.shall.catalogue.demo.model.CatalogueItem;
 
 public interface CatalogueRepository extends MongoRepository<CatalogueItem, String> {
 
-	@Query("{'sim': {$regex: /eSim/i}}")
-	List<CatalogueItem> findByQuery(String itemValue);
+	//@Query("{'sim': {$regex: /eSim/i}}")
+	List<CatalogueItem> findBySimContainingIgnoreCase(String sim);
 
 	List<CatalogueItem> findAll();
 
