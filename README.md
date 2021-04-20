@@ -53,9 +53,10 @@ We can search using any attribute in the above mentioned sample item
 - Spring data
 
 - No SQL Database (**Mongo DB**)
-   - We used MongoDB because its a very power No SQL database and it falls into (CP) according to CPA theorem
-   - Its very efficient when it comes to performance especially with high level of reads with eCommerce and catalogue
-   - Mongo DB scalability is good too
+   - MongoDB is very powerful when it comes to reading from catalgoue & e-Commerce
+   - It's good when it comes to fast performance & scaling
+   - Text search feature 
+   - It falls into CP according to the CAP theorem 
 
 - Lombok
 
