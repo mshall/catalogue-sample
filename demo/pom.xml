@@ -8,7 +8,7 @@
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>2.3.10.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
-	
+
 	</parent>
 	<groupId>com.shall.catalogue</groupId>
 	<artifactId>demo</artifactId>
@@ -51,9 +51,13 @@
 			</exclusions>
 		</dependency>
 		<dependency>
-			<groupId>net.sf.dozer</groupId>
-			<artifactId>dozer</artifactId>
-			<version>5.5.1</version>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>cz.jirutka.spring</groupId>
+			<artifactId>embedmongo-spring</artifactId>
+			<version>RELEASE</version>
 		</dependency>
 		<!-- <dependency> -->
 		<!-- <groupId>de.flapdoodle.embed</groupId> -->
