@@ -9,13 +9,13 @@ import org.springframework.web.client.RestTemplate;
 import com.shall.catalogue.demo.dto.CatalogueItem;
 
 @Configuration
-public class NetworkUtil {
+public class DataRetrievalUtil {
 
-	Logger logger = LoggerFactory.getLogger(NetworkUtil.class);
+	Logger logger = LoggerFactory.getLogger(DataRetrievalUtil.class);
 
 	private final RestTemplate restTemplate;
 
-	public NetworkUtil(RestTemplate restTemplate) {
+	public DataRetrievalUtil(RestTemplate restTemplate) {
 		this.restTemplate = restTemplate;
 	}
 
@@ -23,11 +23,9 @@ public class NetworkUtil {
 	private String catalogueURL;
 
 	public CatalogueItem[] initializeCatalogueFetching() {
-		logger.debug("***********************************");
 		logger.debug("NetworkUtil.initializeCatalogueFetching -> Start");
 		CatalogueItem[] response = restTemplate.getForObject(catalogueURL, CatalogueItem[].class);
 		logger.debug("NetworkUtil.initializeCatalogueFetching -> End");
-		logger.debug("***********************************");
 		return response;
 	}
 }

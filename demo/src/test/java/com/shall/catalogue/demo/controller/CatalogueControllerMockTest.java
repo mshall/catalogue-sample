@@ -45,9 +45,11 @@ public class CatalogueControllerMockTest {
 
 	@Test
 	public void givenResultsWhenSearchThenLengthThree() {
-		when(catalogueService.search(200, "hi", "hi")).thenReturn(sampleItems);
+		when(catalogueService.search("brand", "phone", "picture", "sim", "resolution", "announceDate", 0, "audioJack",
+				"gps", "battery")).thenReturn(sampleItems);
 
-		ResponseEntity<ResponseVO<List<CatalogueItem>>> response = catalogueController.searchItems("hi", 200, "hi");
+		ResponseEntity<ResponseVO<List<CatalogueItem>>> response = catalogueController.searchItems("brand", "phone",
+				"picture", "sim", "resolution", "announceDate", 0, "audioJack", "gps", "battery");
 		assertThat(response.getBody().getResults().size()).isEqualTo(sampleItems.size());
 	}
 }

@@ -22,7 +22,7 @@ import com.shall.catalogue.demo.dto.Release;
 public class DatabaseUtilMockTest {
 
 	@Mock
-	private NetworkUtil networkUtil;
+	private DataRetrievalUtil networkUtil;
 
 	@InjectMocks
 	private DatabaseUtil databaseUtil;

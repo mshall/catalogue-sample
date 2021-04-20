@@ -24,7 +24,7 @@ public class NetworkUtilMockTest {
 	private RestTemplate restTemplate;
 
 	@InjectMocks
-	private NetworkUtil networkUtil;
+	private DataRetrievalUtil networkUtil;
 
 	CatalogueItem sampleItem;
 	CatalogueItem[] sampleItems;

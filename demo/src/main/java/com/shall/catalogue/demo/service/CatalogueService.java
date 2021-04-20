@@ -4,80 +4,68 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.shall.catalogue.demo.dto.Hardware;
+import com.shall.catalogue.demo.dto.Release;
 import com.shall.catalogue.demo.model.CatalogueItem;
-import com.shall.catalogue.demo.repository.CatalogueRepository;
+import com.shall.catalogue.demo.repository.ICatalogueRepository;
 
 @Service
 public class CatalogueService {
 
 	Logger logger = LoggerFactory.getLogger(CatalogueService.class);
 
-	private final CatalogueRepository catalogueRepository;
+	@Autowired
+	public ICatalogueRepository catalogueRepositoryImpl;
 
-	public CatalogueService(CatalogueRepository catalogueRepository) {
-		this.catalogueRepository = catalogueRepository;
+	public CatalogueService() {
 	}
 
-	public List<CatalogueItem> search(int priceEuro, String sim, String announceDate) {
-		logger.debug("***********************************");
+	public List<CatalogueItem> search(String brand, String phone, String picture, String sim, String resolution,
+			String announcementDate, int priceEuro, String audioJack, String gps, String battery) {
 		logger.debug("CatalogueService.search -> Start");
 		List<CatalogueItem> items = null;
-		if (announceDate != null && !announceDate.isEmpty()) {
-			items = findByAnnounceDateAndPrice(announceDate, priceEuro);
-			return items;
-		}
-		if (sim == null || sim.isEmpty()) {
-			items = searchByPrice(priceEuro);
-			return items;
-		} else if (sim != null && !sim.isEmpty()) {
-			items = searchBySim(sim);
-			return items;
-		}
+		com.shall.catalogue.demo.dto.CatalogueItem item = new com.shall.catalogue.demo.dto.CatalogueItem();
+
+		Release release = new Release();
+		Hardware hardware = new Hardware();
+
+		release.setAnnounceDate(announcementDate);
+		release.setPriceEur(priceEuro);
+		hardware.setAudioJack(audioJack);
+		hardware.setGps(gps);
+		hardware.setBattery(battery);
+
+		item.setRelease(release);
+		item.setHardware(hardware);
+
+		item.setBrand(brand);
+		item.setPhone(phone);
+		item.setPicture(picture);
+		item.setResolution(resolution);
+		item.setSim(sim);
+
+		items = catalogueRepositoryImpl.findCatalogueItems(item);
+
+//		if (announceDate != null && !announceDate.isEmpty()) {
+//			items = findByAnnounceDateAndPrice(announceDate, priceEuro);
+//			return items;
+//		}
+//		if (sim == null || sim.isEmpty()) {
+//			items = searchByPrice(priceEuro);
+//			return items;
+//		} else if (sim != null && !sim.isEmpty()) {
+//			items = searchBySim(sim);
+//			return items;
+//		}
 		logger.debug("CatalogueService.search -> End");
-		logger.debug("***********************************");
-		return items;
-	}
-
-	public List<CatalogueItem> searchByPrice(int priceEuro) {
-		logger.debug("***********************************");
-		logger.debug("CatalogueService.searchByPrice -> Start");
-		List<CatalogueItem> items = catalogueRepository.findByPrice(priceEuro);
-		logger.info("Returned items: " + items);
-
-		logger.debug("CatalogueService.searchByPrice -> End");
-		logger.debug("***********************************");
-		return items;
-	}
-
-	public List<CatalogueItem> searchBySim(String sim) {
-		logger.debug("***********************************");
-		logger.debug("CatalogueService.searchBySim -> Start");
-		List<CatalogueItem> items = catalogueRepository.findBySimContainingIgnoreCase(sim);
-		logger.info("Returned items: " + items);
-		logger.debug("CatalogueService.searchBySim -> End");
-		logger.debug("***********************************");
 		return items;
 	}
 
 	public List<CatalogueItem> findAllItems() {
-		logger.debug("***********************************");
-		logger.debug("CatalogueService.findAll -> Start");
-		List<CatalogueItem> items = catalogueRepository.findAll();
-		logger.info("Returned items: " + items);
-		logger.debug("CatalogueService.findAll -> End");
-		logger.debug("***********************************");
-		return items;
+		return catalogueRepositoryImpl.findAll();
 	}
 
-	public List<CatalogueItem> findByAnnounceDateAndPrice(String announceDate, int price) {
-		logger.debug("***********************************");
-		logger.debug("CatalogueService.findByAnnounceDateAndPrice -> Start");
-		List<CatalogueItem> items = catalogueRepository.findByAnnounceDateAndPrice(announceDate, price);
-		logger.info("Returned items: " + items);
-		logger.debug("CatalogueService.findByAnnounceDateAndPrice -> End");
-		logger.debug("***********************************");
-		return items;
-	}
 }
