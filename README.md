@@ -198,3 +198,7 @@ mvn spring-boot:run
 
 
 ### 3- Dockerizing the application
+
+### 4- Adding swagger api documentation
+
+### 5- Adding spring actuator 
