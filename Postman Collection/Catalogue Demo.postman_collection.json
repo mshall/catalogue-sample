@@ -106,6 +106,32 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Find by price",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:9090/catalogue-demo/mobile/search?priceEur=1100",
+					"host": [
+						"localhost"
+					],
+					"port": "9090",
+					"path": [
+						"catalogue-demo",
+						"mobile",
+						"search"
+					],
+					"query": [
+						{
+							"key": "priceEur",
+							"value": "1100"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
